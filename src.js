@@ -19,10 +19,114 @@ function Plex(config = {}) {
 	let host = config.host
 	let useCachedLibrary = config.useCachedLibrary || false
 	let libraryCacheRefreshThreshold = 5 * 60 * 1000
+	let stopWords = new Set(["and", "it", "the", "a", "to", "in", "or"])
 
 	if (!token) throw new Error("please input your plex token")
 	let plexUrl = `http://${host}:32400/library/all?X-Plex-Token=${token}`
 	
+	
+	// SEARCH //
+	this.searchMovies = async function(query) {
+		let movies = await this.getMovies()
+		let minisearch = new MiniSearch({
+			fields: ["title"],
+			processTerm: (term, _fieldName) => stopWords.has(term) ? null : term.toLowerCase(),
+			searchOptions: {
+				// boost: { title: 10 },
+				fuzzy: .01
+			}
+		})
+		minisearch.addAll(movies)
+		let res = minisearch.search(query)
+		res = res.filter(item => item.score > 5)
+		let matches = []
+		res.forEach(item => {
+			let match = movies.find(x => x.id == item.id)
+			match.searchMeta = item
+			if (match) matches.push(match)
+		})
+		return matches
+	}
+
+	// SEARCH DIRECTORS // returns movies with directors by query
+	this.searchDirectors = async function(query) {
+		let movies = await this.getMovies()
+		let minisearch = new MiniSearch({
+			fields: ["director"],
+			processTerm: (term, _fieldName) => stopWords.has(term) ? null : term.toLowerCase(),
+			searchOptions: {
+				// boost: { title: 10 },
+				fuzzy: .01
+			}
+		})
+		minisearch.addAll(movies)
+		let res = minisearch.search(query)
+		res = res.filter(item => item.score > 5)
+		let matches = []
+		res.forEach(item => {
+			let match = movies.find(x => x.id == item.id)
+			match.searchMeta = item
+			if (match) matches.push(match)
+		})
+		return matches
+	}
+
+	// SEARCH ACTORS // returns movies with directors by query
+	this.searchActors = async function(query) {
+		let movies = await this.getMovies()
+		let minisearch = new MiniSearch({
+			fields: ["role"],
+			processTerm: (term, _fieldName) => stopWords.has(term) ? null : term.toLowerCase(),
+			searchOptions: {
+				// boost: { title: 10 },
+				fuzzy: .01
+			}
+		})
+		minisearch.addAll(movies)
+		let res = minisearch.search(query)
+		res = res.filter(item => item.score > 5)
+		let matches = []
+		res.forEach(item => {
+			let match = movies.find(x => x.id == item.id)
+			match.searchMeta = item
+			if (match) matches.push(match)
+		})
+		return matches
+	}
+
+	this.searchEras = async function(query) {
+		
+	}
+
+	// LIST DIRECTORS //
+	this.listDirectors = async function() {
+		let movies = await this.getMovies()
+		let directors = []
+		movies.forEach(movie => {
+			if (movie.hasOwnProperty("director")) {
+				movie.director.forEach(director => directors.push(director))
+			}
+		})
+		directors.sort()
+		directors = new Set(directors)
+		directors = Array.from(directors)
+		return directors
+	}
+
+	// LIST ACTORS //
+	this.listActors = async function() {
+		let movies = await this.getMovies()
+		let actors = []
+		movies.forEach(movie => {
+			if (movie.hasOwnProperty("role")) {
+				movie.role.forEach(actor => actors.push(actor))
+			}
+		})
+		actors.sort()
+		actors = new Set(actors)
+		actors = Array.from(actors)
+		return actors
+	}
 	
 	// GET LIBRARY // get library
 	this.getLibrary = async function() {
@@ -40,12 +144,13 @@ function Plex(config = {}) {
 		}
 	}
 
+	// GET MOVIES // returns only movies
 	this.getMovies = async function() {
 		let library = await this.getLibrary()
 		library = library.filter(item => {
 			let section = item.librarySectionTitle.toLowerCase()
-			if (section == "all") return true
-			// console.log(section)
+			let type = item.type
+			if (section == "all" && type == "movie" ) return true
 		})
 		return library
 	}
@@ -87,7 +192,7 @@ function Plex(config = {}) {
 		libraryData = library.data
 		let newLibrary = []
 		let selectedKeys = ["Genre", "Director", "Country", "Role", "Writer"]
-		libraryData.forEach(item => {
+		libraryData.forEach((item, i) => {
 			let newItem = {}
 			for (let [key, val] of Object.entries(item)) {
 				if (selectedKeys.includes(key)) {
@@ -96,6 +201,7 @@ function Plex(config = {}) {
 					newItem[key.toLowerCase()] = tags
 				} else newItem[key] = val
 			}
+			newItem.id = i
 			// selectedKeys.forEach(x => {
 			// 	if (!newItem.hasOwnProperty(x.toLowerCase()) && newItem.type == "movie") newItem[x.toLowerCase()] = []
 			// })
@@ -108,25 +214,5 @@ function Plex(config = {}) {
 }
 
 module.exports = Plex
-
-
-let plex = new Plex({
-	host: "192.168.1.128",
-	token: process.env.PLEX_TOKEN,
-	useCachedLibrary: true
-})
-
-// plex.getMovies().then(res => {
-// 	plex.convertLibrary(res)
-// })
-
-plex.getLibrary()
-
-
-// plex.getLibrary().then(data => {
-// 	// console.log(data)
-// 	let newLib = plex.convertLibrary(data)
-// 	console.log(newLib)
-// })
 
 
