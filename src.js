@@ -107,7 +107,7 @@ function Plex(config = {}) {
 
 }
 
-
+module.exports = Plex
 
 
 let plex = new Plex({
