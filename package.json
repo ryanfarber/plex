@@ -26,9 +26,11 @@
   "dependencies": {
     "@ryanforever/logger": "^4.0.5",
     "axios": "^0.26.1",
+    "get-decade": "^1.0.0",
     "humanize-duration": "^3.27.1",
     "minisearch": "^4.0.3",
     "node-fetch": "^2.6.7",
+    "underscore": "^1.13.2",
     "xml-js": "^1.6.11"
   }
 }

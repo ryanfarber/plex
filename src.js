@@ -11,6 +11,8 @@ const fs = require("fs")
 const fsp = require("fs").promises
 const cachedLibrary = require("./data/library.json")
 const {humanizeTime} = require("./data/helpers.js")
+let _ = require("underscore")
+const getDecade = require('get-decade')
 
 
 function Plex(config = {}) {
@@ -94,38 +96,200 @@ function Plex(config = {}) {
 		return matches
 	}
 
-	this.searchEras = async function(query) {
-		
-	}
+	// SEARCH ERAS //
+	// this.searchEras = async function(query) {
+
+	// }
 
 	// LIST DIRECTORS //
 	this.listDirectors = async function() {
-		let movies = await this.getMovies()
-		let directors = []
-		movies.forEach(movie => {
-			if (movie.hasOwnProperty("director")) {
-				movie.director.forEach(director => directors.push(director))
-			}
-		})
-		directors.sort()
-		directors = new Set(directors)
-		directors = Array.from(directors)
-		return directors
+		return await this.list("director")
+	}
+
+	// LIST WRITERS //
+	this.listWriters = async function() {
+		return await this.list("writer")
 	}
 
 	// LIST ACTORS //
 	this.listActors = async function() {
+		return await this.list("role")
+	}
+
+	// LIST COUNTRIES //
+	this.listCountries = async function() {
+		return await this.list("country")
+	}
+
+	// LIST GENRES //
+	this.listGenres = async function() {
+		return await this.list("genre")
+	}
+
+	this.analyzeMovies = async function() {
 		let movies = await this.getMovies()
-		let actors = []
+		let props = ["director", "role", "genre", "writer", "country"]
+	
+		let schema = {
+			numMovies: movies.length,
+			director: [],
+			writer: [],
+			role: [],
+			genre: [],
+			country: [],
+			genders: [],
+			races: [],
+			years: [],
+			eras: [],
+			insights: {
+				top: []
+			}
+		}
+
+		// calculate num movies and percentages for each prop
+		props.forEach(prop => {
+			let list = _.chain(movies).pluck(prop).flatten().uniq().sort().value()
+			list.forEach(item => {
+				let matches = movies.filter(movie => {
+					if (movie.hasOwnProperty(prop)) {
+						if (movie[prop].includes(item)) return true
+					}
+				})
+				let numMovies = _.size(matches)
+				schema[prop].push({
+					name: item,
+					numMovies,
+					percent: ((numMovies / schema.numMovies) * 100).toFixed(3)
+				})
+			})
+			schema[prop] = _.chain(schema[prop]).sortBy("numMovies").reverse().value()
+		})
+
+		let years = _.chain(movies).pluck("year").flatten().uniq().compact().sort().value()
+
+		years.forEach(year => {
+			let matches = movies.filter(movie => movie.year == year)
+			let numMovies = _.size(matches)
+			schema.years.push({
+				year,
+				numMovies
+			})
+		})
+
+		schema.years = _.chain(schema.years).sortBy("year").reverse().value()
+
+		// schema.eras.push(generateEras())
+		schema.years.forEach(item => {
+			 let year = item.year
+
+		})
+
+
+		console.log(schema)
+
+
+		function generateEras() {
+			let eras = []
+			let minYear = 1900
+			let maxYear = new Date(Date.now()).getFullYear()
+			for (let i = minYear; i <= maxYear; i += 10) {
+				let century
+				let string
+				if (i >= 1900 && i <= 1999) century = "20th"
+				else century = "21st"
+
+				if (century == "20th") string = (i - 1900).toString() + "s"
+				else string = (i - 2000).toString() + "s"
+				schema.eras.push({
+					century,
+					era: i,
+					string,
+					numMovies: 0
+				})
+			}
+			return eras
+		}
+		// let tempEras = []
+		// schema.years.forEach(item => {
+		// 	let year = item.year
+		// 	let century
+		// 	let decade
+
+		// 	if (year >= 1900 && year <= 1999) {
+		// 		let trim = year - 1900
+		// 		century = 20
+		// 		// console.log(trim)
+		// 		if (trim >= 0 && trim <= 9) decade = 0
+		// 		else if (trim >= 10 && trim <= 19) decade = 10
+		// 		else if (trim >= 20 && trim <= 29) decade = 20
+		// 		else if (trim >= 30 && trim <= 39) decade = 30
+		// 		else if (trim >= 40 && trim <= 49) decade = 40
+		// 		else if (trim >= 50 && trim <= 59) decade = 50
+		// 		else if (trim >= 60 && trim <= 69) decade = 60
+		// 		else if (trim >= 70 && trim <= 79) decade = 70
+		// 		else if (trim >= 80 && trim <= 89) decade = 80
+		// 		else if (trim >= 90 && trim <= 99) decade = 90
+		// 	} else {
+		// 		let trim = year - 2000
+		// 		century = 21
+		// 		// console.log(trim)
+		// 		if (trim >= 0 && trim <= 9) decade = 0
+		// 		else if (trim >= 10 && trim <= 19) decade = 10
+		// 		else if (trim >= 20 && trim <= 29) decade = 20
+		// 		else if (trim >= 30 && trim <= 39) decade = 30
+		// 		else if (trim >= 40 && trim <= 49) decade = 40
+		// 		else if (trim >= 50 && trim <= 59) decade = 50
+		// 		else if (trim >= 60 && trim <= 69) decade = 60
+		// 		else if (trim >= 70 && trim <= 79) decade = 70
+		// 		else if (trim >= 80 && trim <= 89) decade = 80
+		// 		else if (trim >= 90 && trim <= 99) decade = 90
+		// 	}
+
+			
+		// 	// item.century = century
+		// 	// item.decade = decade
+		// 	tempEras.push({century, decade})
+
+		// // console.log(century, decade)
+		// 	// let decade = new Date(year.year).getYear()
+		// 	// console.log(decade)
+		// })
+
+		// // console.log(years)
+		// console.log(tempEras)
+
+		// function mergeDecades(tempEras) {
+		// 	let newEras = []
+
+		// 	newEras.push
+		// 	tempEras.forEach(item => {
+		// 		let obj = {
+		// 			century: item.century
+		// 			decade: undefined
+		// 		}
+		// 		if (century == 20) {
+		// 			let decade = item.decade - 10
+		// 			if (decade == 0) obj.century
+
+		// 		}
+		// 	})
+		// }
+
+	}
+
+	// LIST // returns a list of a given property
+	this.list = async function(prop) {
+		let movies = await this.getMovies()
+		let items = []
 		movies.forEach(movie => {
-			if (movie.hasOwnProperty("role")) {
-				movie.role.forEach(actor => actors.push(actor))
+			if (movie.hasOwnProperty(prop)) {
+				movie[prop].forEach(item => items.push(item))
 			}
 		})
-		actors.sort()
-		actors = new Set(actors)
-		actors = Array.from(actors)
-		return actors
+		items.sort()
+		items = new Set(items)
+		items = Array.from(items)
+		return items
 	}
 	
 	// GET LIBRARY // get library

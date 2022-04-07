@@ -30,9 +30,15 @@ let plex = new Plex({
 
 // plex.searchDirectors("coen brothers").then(console.log)
 // plex.searchActors("al pacino").then(console.log)
-plex.searchEras("90")
+// plex.searchEras("90")
+
 
 
 // plex.listDirectors().then(console.log)
 // plex.listActors().then(console.log)
+// plex.listWriters().then(console.log)
+// plex.listCountries().then(console.log)
+// plex.listGenres().then(console.log)
+
+plex.analyzeMovies()
 
