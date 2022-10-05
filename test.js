@@ -3,7 +3,7 @@
 require("dotenv").config()
 const fs = require("fs")
 const path = require("path")
-const Plex = require("./src.js")
+const Plex = require("./src")
 
 
 let plex = new Plex({
@@ -67,10 +67,10 @@ let analysis = plex.analyzeMovies({
 	for (let [key, val] of Object.entries(res)) {
 		let include = ["director", "writer", "role", "genre", "studios", "country"]
 	}
-	let directors = res.director.map((x, i) => `${i+1}) **${x.name}** - ${x.numMovies} movies (${x.percent}%)`)
-	topList.push({name: "Directors", list: directors})
-	let directors = res.director.map((x, i) => `${i+1}) **${x.name}** - ${x.numMovies} movies (${x.percent}%)`)
-	topList.push({name: "Directors", list: directors})
+	// let directors = res.director.map((x, i) => `${i+1}) **${x.name}** - ${x.numMovies} movies (${x.percent}%)`)
+	// topList.push({name: "Directors", list: directors})
+	// let directors = res.director.map((x, i) => `${i+1}) **${x.name}** - ${x.numMovies} movies (${x.percent}%)`)
+	// topList.push({name: "Directors", list: directors})
 
 	topList = topList.map(x => `## Top ${x.list.length} ${x.name}\n\n${x.list.join("\n")}`)
 	let data = header + "\n" + body + "\n\n" +topList

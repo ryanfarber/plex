@@ -8,7 +8,7 @@ const convertXML = require('xml-js')
 const MiniSearch = require('minisearch')
 const fs = require("fs")
 const fsp = require("fs").promises
-const cachedLibrary = require("../data/library.json")
+
 const {humanizeTime} = require("./helpers.js")
 let _ = require("underscore")
 const getDecade = require('get-decade')
@@ -221,7 +221,9 @@ function Plex(config = {}) {
 	this.getLibrary = async function() {
 		logger.debug("getting library...")
 		let data
-
+		let cachedLibrary = {}
+		if (fs.existsSync("./cache/library.json")) cachedLibrary = require("../cache/library.json")
+		else await this.cacheLibrary()
 		if (useCachedLibrary) {
 			if (!cachedLibrary) await this.cacheLibrary()
 			else if (this.shouldRefreshCache()) await this.cacheLibrary()
@@ -272,7 +274,8 @@ function Plex(config = {}) {
 		let json = JSON.stringify(obj, null, 2)
 
 		logger.debug("saving...")
-		await fsp.writeFile("./data/library.json", json).catch(console.error)
+		if (!fs.existsSync("./cache")) fs.mkdirSync("./cache")
+		await fsp.writeFile("./cache/library.json", json).catch(console.error)
 		logger.debug("done!")
 		return
 	}
@@ -282,6 +285,11 @@ function Plex(config = {}) {
 	// SHOULD REFRESH CACHE // returns true if last cached date is longer than threshold 
 	this.shouldRefreshCache = function() {
 		logger.debug("checking cache...")
+		// const cachedLibrary = require("../cache/library.json")
+		let cachedLibrary = {}
+		if (fs.existsSync("./cache/library.json")) {
+			cachedLibrary = require("../cache/library.json")
+		}
 		let now = new Date(Date.now())
 		let diff = now - new Date(cachedLibrary.cacheDate)
 		let secsSinceLastCache = humanizeTime(diff)

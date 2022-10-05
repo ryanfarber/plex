@@ -1,6 +1,7 @@
 /data
 /output
 /tmp
+/cache
 
 # Logs
 logs
