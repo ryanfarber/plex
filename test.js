@@ -18,9 +18,9 @@ let plex = new Plex({
 
 
 
-plex.getMovies(false).then(res => {
-	console.log(res)
-})
+// plex.getMovies(false).then(res => {
+// 	console.log(res)
+// })
 
 // plex.getLibrary().then(lib => {
 // 	console.log(lib)
@@ -53,10 +53,32 @@ plex.getMovies(false).then(res => {
 // plex.listCountries().then(console.log)
 // plex.listGenres().then(console.log)
 
-plex.analyzeMovies({
-	max: 25
-	// sortBy: "numMovies"
+let analysis = plex.analyzeMovies({
+	max: 25,
+	sortBy: "numMovies"
+}).then(res => {
+	console.log(res)
+	let now = new Date(Date.now()).toLocaleString()
+	let insights = res.insights
+	let header = `# Plex Analysis\n\ndate: ${now}`
+	let body = insights.map(x => `## ${x.type}\n${x.summary}`).join("\n\n")
+	let topList = []
+
+	for (let [key, val] of Object.entries(res)) {
+		let include = ["director", "writer", "role", "genre", "studios", "country"]
+	}
+	let directors = res.director.map((x, i) => `${i+1}) **${x.name}** - ${x.numMovies} movies (${x.percent}%)`)
+	topList.push({name: "Directors", list: directors})
+	let directors = res.director.map((x, i) => `${i+1}) **${x.name}** - ${x.numMovies} movies (${x.percent}%)`)
+	topList.push({name: "Directors", list: directors})
+
+	topList = topList.map(x => `## Top ${x.list.length} ${x.name}\n\n${x.list.join("\n")}`)
+	let data = header + "\n" + body + "\n\n" +topList
+	console.log("\n")
+	console.log(data)
+	console.log("\n")
 })
+
 
 
 

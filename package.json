@@ -4,7 +4,8 @@
   "description": "plex API",
   "main": "index.js",
   "scripts": {
-    "test": "node test.js"
+    "test": "node test.js",
+    "docs": "jsdoc --configure jsdoc.json --verbose"
   },
   "repository": {
     "type": "git",
@@ -24,11 +25,13 @@
     "dotenv": "^16.0.0"
   },
   "dependencies": {
-    "@ryanforever/logger": "^4.0.5",
+    "@ryanforever/logger": "^5.0.2",
     "axios": "^0.26.1",
     "fast-xml-parser": "^4.0.9",
     "get-decade": "^1.0.0",
     "humanize-duration": "^3.27.1",
+    "jaguarjs-jsdoc": "^1.1.0",
+    "jsdoc": "^3.6.11",
     "minisearch": "^4.0.3",
     "node-fetch": "^2.6.7",
     "underscore": "^1.13.2",

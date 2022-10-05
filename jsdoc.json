@@ -1,0 +1,23 @@
+{
+    "applicationName": "Plex",
+    "meta": {
+        "title": "Plex",
+        "description": "plex api",
+        "keyword": "plex"
+    },
+    "source": {
+        "include": [
+            "src",
+            "./README.md"
+        ],
+        "includePattern": ".js$",
+        "excludePattern": "(node_modules/|docs)"
+    },
+    "opts": {
+        "template": "node_modules/jaguarjs-jsdoc",
+        "readme": "./README.md",
+        "destination": "docs/",
+        "verbose": true,
+        "theme_opts": {}
+    }
+}
