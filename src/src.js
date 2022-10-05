@@ -17,8 +17,8 @@ const getDecade = require('get-decade')
  * Plex
  * @constructor
  * @arg {object} config - plex config
- * @arg {string} token - plex token
- * @arg {string} host - ip address of computer running plex server
+ * @arg {string} config.host - ip address of computer running plex server
+ * @arg {string} config.token - plex token
  * @arg {boolean} [useCachedLibrary=true] - set to false to always get library from server
  * @example
  * const Plex = require("@ryanforever/plex")
