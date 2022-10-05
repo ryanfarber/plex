@@ -1,0 +1,28 @@
+{
+    "source": {
+        "include": ["src", "README.md"],
+        "includePattern": ".js$",
+        "excludePattern": "(node_modules/|docs)"
+    },
+    "opts": {
+        "template": "node_modules/clean-jsdoc-theme",
+        "readme": "./README.md",
+        "destination": "docs/",
+        "verbose": true,
+        "theme_opts": {
+            "title": "Plex API Docs",
+            "homepageTitle": "Plex API Docs",
+            "menu" : [
+                {
+                    "title": "Github",
+                    "link": "https://github.com/ryanfarber/plex",
+                    "target": "_blank"
+                }
+            ]
+        }
+    }
+
+}
+
+
+

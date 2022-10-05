@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "node test.js",
-    "docs": "jsdoc --configure jsdoc.json --verbose"
+    "docs": "jsdoc --configure jsdoc-3.json --verbose"
   },
   "repository": {
     "type": "git",
@@ -27,6 +27,8 @@
   "dependencies": {
     "@ryanforever/logger": "^5.0.2",
     "axios": "^0.26.1",
+    "better-docs": "^2.7.2",
+    "clean-jsdoc-theme": "^4.1.8",
     "fast-xml-parser": "^4.0.9",
     "get-decade": "^1.0.0",
     "humanize-duration": "^3.27.1",

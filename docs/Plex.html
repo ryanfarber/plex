@@ -1,131 +1,137 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <meta charset="utf-8">
-    <title>Class: Plex</title>
-    
-    
-    <script src="scripts/prettify/prettify.js"></script>
-    <script src="scripts/prettify/lang-css.js"></script>
-    <script src="scripts/jquery.min.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
-    <link type="text/css" rel="stylesheet" href="styles/bootstrap.min.css">
-    <link type="text/css" rel="stylesheet" href="styles/jaguar.css">
-    
-    
-    <script>
-    var config = {"monospaceLinks":false,"cleverLinks":false,"default":{}};
-    </script>
-    
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Plex API Plex</title>
 
-    
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
 </head>
-<body>
-<div id="wrap" class="clearfix">
-    
-<div class="navigation">
-    <h3 class="applicationName"><a href="index.html"></a></h3>
 
-    <div class="search">
-        <input id="search" type="text" class="form-control input-sm" placeholder="Search Documentations">
-    </div>
-    <ul class="list">
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
     
-        <li class="item" data-name="Plex">
-            <span class="title">
-                <a href="Plex.html">Plex</a>
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+             
+                <a href="index.html">
+                    <h1 class="navbar-item">Plex API</h1>
+                </a>
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    Documentation
+                </a>
                 
-            </span>
-            <ul class="members itemMembers">
-            
-            </ul>
-            <ul class="typedefs itemMembers">
-            
-            </ul>
-            <ul class="typedefs itemMembers">
-            
-            </ul>
-            <ul class="methods itemMembers">
-            
-            <span class="subtitle">Methods</span>
-            
-                <li data-name="Plex#analyzeMovies"><a href="Plex.html#analyzeMovies">analyzeMovies</a></li>
-            
-                <li data-name="Plex#cacheLibrary"><a href="Plex.html#cacheLibrary">cacheLibrary</a></li>
-            
-                <li data-name="Plex#getLibrary"><a href="Plex.html#getLibrary">getLibrary</a></li>
-            
-                <li data-name="Plex#getMovies"><a href="Plex.html#getMovies">getMovies</a></li>
-            
-                <li data-name="Plex#list"><a href="Plex.html#list">list</a></li>
-            
-                <li data-name="Plex#listActors"><a href="Plex.html#listActors">listActors</a></li>
-            
-                <li data-name="Plex#listCountries"><a href="Plex.html#listCountries">listCountries</a></li>
-            
-                <li data-name="Plex#listDirectors"><a href="Plex.html#listDirectors">listDirectors</a></li>
-            
-                <li data-name="Plex#listGenres"><a href="Plex.html#listGenres">listGenres</a></li>
-            
-                <li data-name="Plex#listWriters"><a href="Plex.html#listWriters">listWriters</a></li>
-            
-                <li data-name="Plex#searchActors"><a href="Plex.html#searchActors">searchActors</a></li>
-            
-                <li data-name="Plex#searchDirectors"><a href="Plex.html#searchDirectors">searchDirectors</a></li>
-            
-                <li data-name="Plex#searchMovies"><a href="Plex.html#searchMovies">searchMovies</a></li>
-            
-                <li data-name="Plex#searchWriters"><a href="Plex.html#searchWriters">searchWriters</a></li>
-            
-            </ul>
-            <ul class="events itemMembers">
-            
-            </ul>
-        </li>
-    
-    </ul>
+                 
+                    
+                        <a
+                            class="link user-link "
+                            href="https://github.com/ryanfarber/plex"
+                        >
+                            Github
+                        </a>
+                    
+                
+                
+            </div>
+        </div>
+    </div>
 </div>
-    <div class="main">
-        <h1 class="page-title" data-filename="Plex.html">Class: Plex</h1>
-        
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+                <div class="search-wrapper">
+                    <input id="search" type="text" placeholder="Search docs..." class="input">
+                </div>
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Classes</h3><ul><li><a href="Plex.html">Plex</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Class</p>
+                    <h1>Plex</h1>
+                </header>
+                
+
 
 
 
 <section>
-    
+
 <header>
-    <h2>
-    Plex
-    </h2>
     
-</header>  
+        <h2><span class="attribs"><span class="type-signature"></span></span>Plex<span class="signature">(config)</span><span class="type-signature"></span></h2>
+        
+    
+</header>
 
 <article>
     <div class="container-overview">
     
-    
-    
         
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="Plex">
-            
-            new Plex<span class="signature">(config)</span>
-        </h4>
-    
-        
-        <div class="tag-source">
-            /Users/ryanfarber/code/sync/github/plex/src/src.js, line 30
-        </div>
-        
-    </div>
+            <div class='vertical-section'>
+                <div class="members">
+                    <div class="member">
+                        <div class=name>
+                            <span class="tag">Constructor</span>
+                        </div>
+                        
+
 
     
-</dt>
-<dd>
+    <h4 class="name" id="Plex">
+        <a class="href-link" href="#Plex">#</a>
+        
+        <span class="code-name">
+            
+                new Plex<span class="signature">(config)</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
+    
+
     
     
     <div class="description">
@@ -133,269 +139,311 @@
     </div>
     
 
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
     
-    
-    
-    
-    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+            <th>Attributes</th>
+            
+
+            
+            <th>Default</th>
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
         
 
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
             
-                <td class="name"><code>config</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
+<tr class="deep-level-0">
+  
+      <td class="name"><code>config</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">object</code>
 
 
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                plex config
-                
+  
+  </td>
 
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		<th>Default</th>
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>host</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
+  
+      <td class="attributes">
+      
 
+      
 
-            
-            </td>
-            
-            
-                <td class="default">
-                
-                </td>
-            
-            
-            <td class="description last">
-                
-                    
-                    
-                        
-                    
-                
-                ip address of computer running plex server</td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>token</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
+      
+      </td>
+  
 
+  
+      <td class="default">
+      
+      </td>
+  
 
-            
-            </td>
-            
-            
-                <td class="default">
-                
-                </td>
-            
-            
-            <td class="description last">
-                
-                    
-                    
-                        
-                    
-                
-                plex token</td>
-        </tr>
-	
-	
-	
-        <tr>
-            
-                <td class="name"><code>useCachedLibrary</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
+  <td class="description last">plex config</td>
+</tr>
 
-
-            
-            </td>
-            
-            
-                <td class="default">
-                
-                    true
-                
-                </td>
-            
-            
-            <td class="description last">
-                
-                    
-                        <span class="optional">optional</span>
-                    
-                    
-                        
-                    
-                
-                set to false to always get library from server</td>
-        </tr>
-	
-	
-	</tbody>
-</table>
-            </td>
-        </tr>
-	
-	
-	</tbody>
-</table>
+  
+  
     
+<tr class="deep-level-1">
+  
+      <td class="name"><code>host</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">string</code>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+      </td>
+  
+
+  <td class="description last">ip address of computer running plex server</td>
+</tr>
+
+  
     
+<tr class="deep-level-1">
+  
+      <td class="name"><code>token</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">string</code>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+      </td>
+  
+
+  <td class="description last">plex token</td>
+</tr>
+
+  
     
+<tr class="deep-level-1">
+  
+      <td class="name"><code>useCachedLibrary</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">boolean</code>
+
+
+  
+  </td>
+
+  
+      <td class="attributes">
+      
+          &lt;optional><br>
+      
+
+      
+
+      
+      </td>
+  
+
+  
+      <td class="default">
+      
+          true
+      
+      </td>
+  
+
+  <td class="description last">set to false to always get library from server</td>
+</tr>
+
+  
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
 <dl class="details">
+
     
-        
+
     
+
     
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
     
 
     
     
+
     
+
     
+
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
+        <p class="tag-source">
+            <a href="src.js.html" class="button">View Source</a>
+            <span>
+                <a href="src.js.html">src.js</a>, <a href="src.js.html#line30">line 30</a>
+            </span>
+        </p>
     
 </dl>
 
-    
-    
 
-    
 
-    
-    
-    
-    
-    
-    
-    
-        <h5>Example</h5>
-        
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
     
-    <pre class="prettyprint"><code>const Plex = require("@ryanforever/plex")
+    
+        <pre class="prettyprint"><code>const Plex = require("@ryanforever/plex")
 const plex = new Plex({
 	token: process.env.PLEX_TOKEN,
 	host: "192.168.1.128"
 })</code></pre>
     
 
-    
-</dd>
 
+
+                    </div>
+                </div>
+            </div>
+        
     
     </div>
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-        <h3 class="subsection-title">Methods</h3>
-        
-        <dl>
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="analyzeMovies">
-            
-            analyzeMovies<span class="signature">(config)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{object}</span>
-        </h4>
-    
-        
-        <div class="tag-source">
-            /Users/ryanfarber/code/sync/github/plex/src/src.js, line 307
-        </div>
-        
-    </div>
 
     
-</dt>
-<dd>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <div class='vertical-section'>
+            <h1>Methods</h1>
+            <div class="members">
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="analyzeMovies">
+        <a class="href-link" href="#analyzeMovies">#</a>
+        
+        <span class="code-name">
+            
+                analyzeMovies<span class="signature">(config)</span><span class="type-signature"> &rarr; {object}</span>
+            
+        </span>
+    </h4>
+    
+
     
     
     <div class="description">
@@ -403,197 +451,210 @@ const plex = new Plex({
     </div>
     
 
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
     
-    
-    
-    
-    
+<div class="table-container">
+    <table class="params table">
+        <thead>
+        <tr>
+            
+            <th>Name</th>
+            
+
+            <th>Type</th>
+
+            
+
+            
+            <th>Default</th>
+            
+
+            <th class="last">Description</th>
+        </tr>
+        </thead>
+
+        <tbody>
         
 
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
             
-                <td class="name"><code>config</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
+<tr class="deep-level-0">
+  
+      <td class="name"><code>config</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">object</code>
 
 
-            
-            </td>
-            
-            
-            
-            <td class="description last">
-                
-                
-                
+  
+  </td>
 
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		<th>Default</th>
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
-        <tr>
-            
-                <td class="name"><code>max</code></td>
-            
-            
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
+  
 
+  
+      <td class="default">
+      
+      </td>
+  
 
-            
-            </td>
-            
-            
-                <td class="default">
-                
-                    25
-                
-                </td>
-            
-            
-            <td class="description last">
-                
-                max amount of items to list</td>
-        </tr>
-	
-	
-	</tbody>
-</table>
-            </td>
-        </tr>
-	
-	
-	</tbody>
-</table>
+  <td class="description last"></td>
+</tr>
+
+  
+  
     
-    
-    
+<tr class="deep-level-1">
+  
+      <td class="name"><code>max</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">object</code>
+
+
+  
+  </td>
+
+  
+
+  
+      <td class="default">
+      
+          25
+      
+      </td>
+  
+
+  <td class="description last">max amount of items to list</td>
+</tr>
+
+  
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
 <dl class="details">
+
     
-        
+
     
+
     
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
     
 
     
     
+
     
+
     
+
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
+        <p class="tag-source">
+            <a href="src.js.html" class="button">View Source</a>
+            <span>
+                <a href="src.js.html">src.js</a>, <a href="src.js.html#line307">line 307</a>
+            </span>
+        </p>
     
 </dl>
 
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    <h5>Returns:</h5>
-    
 
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Type</th>
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-    <tbody>
-    
-        <tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
             
-            <td class="type">
-            
-                        object
-                        
                     
-            </td>
-            <td class="description last">an analysis of your plex library</td>
-        </tr>
-    
-    </tbody>
-</table>
 
+<div class="columns">
+    
+    <div class='param-desc column is-7'>an analysis of your plex library</div>
     
     
-    
-</dd>
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<code class="param-type">object</code>
 
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="cacheLibrary">
-            
-            cacheLibrary<span class="signature">()</span>
-        </h4>
+
+    </div>
     
-        
-        <div class="tag-source">
-            /Users/ryanfarber/code/sync/github/plex/src/src.js, line 264
+</div>
+
+                
         </div>
-        
     </div>
 
+
+
+
+</div>
+            
+                <div class="member">
+
+
     
-</dt>
-<dd>
+    <h4 class="name" id="cacheLibrary">
+        <a class="href-link" href="#cacheLibrary">#</a>
+        
+        <span class="code-name">
+            
+                cacheLibrary<span class="signature">()</span><span class="type-signature"></span>
+            
+        </span>
+    </h4>
+    
+
     
     
     <div class="description">
@@ -601,70 +662,96 @@ const plex = new Plex({
     </div>
     
 
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
+
+
+
+
+
 <dl class="details">
+
     
-        
+
     
+
     
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
     
 
     
     
+
     
+
     
+
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
+        <p class="tag-source">
+            <a href="src.js.html" class="button">View Source</a>
+            <span>
+                <a href="src.js.html">src.js</a>, <a href="src.js.html#line264">line 264</a>
+            </span>
+        </p>
     
 </dl>
 
-    
-    
 
-    
 
-    
-    
-    
-    
-    
-    
-    
-</dd>
 
-        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
             
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="getLibrary">
-            
-            getLibrary<span class="signature">()</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{array}</span>
-        </h4>
-    
-        
-        <div class="tag-source">
-            /Users/ryanfarber/code/sync/github/plex/src/src.js, line 221
-        </div>
-        
-    </div>
+                <div class="member">
+
 
     
-</dt>
-<dd>
+    <h4 class="name" id="getLibrary">
+        <a class="href-link" href="#getLibrary">#</a>
+        
+        <span class="code-name">
+            
+                getLibrary<span class="signature">()</span><span class="type-signature"> &rarr; {array}</span>
+            
+        </span>
+    </h4>
+    
+
     
     
     <div class="description">
@@ -672,99 +759,121 @@ const plex = new Plex({
     </div>
     
 
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
+
+
+
+
+
 <dl class="details">
+
     
-        
+
     
+
     
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
     
 
     
     
+
     
+
     
+
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
+        <p class="tag-source">
+            <a href="src.js.html" class="button">View Source</a>
+            <span>
+                <a href="src.js.html">src.js</a>, <a href="src.js.html#line221">line 221</a>
+            </span>
+        </p>
     
 </dl>
 
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    <h5>Returns:</h5>
-    
 
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Type</th>
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-    <tbody>
-    
-        <tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
             
-            <td class="type">
-            
-                        array
-                        
                     
-            </td>
-            <td class="description last">plex items</td>
-        </tr>
-    
-    </tbody>
-</table>
 
+<div class="columns">
+    
+    <div class='param-desc column is-7'>plex items</div>
     
     
-    
-</dd>
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<code class="param-type">array</code>
 
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="getMovies">
-            
-            getMovies<span class="signature">()</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{array}</span>
-        </h4>
+
+    </div>
     
-        
-        <div class="tag-source">
-            /Users/ryanfarber/code/sync/github/plex/src/src.js, line 241
+</div>
+
+                
         </div>
-        
     </div>
 
+
+
+
+</div>
+            
+                <div class="member">
+
+
     
-</dt>
-<dd>
+    <h4 class="name" id="getMovies">
+        <a class="href-link" href="#getMovies">#</a>
+        
+        <span class="code-name">
+            
+                getMovies<span class="signature">()</span><span class="type-signature"> &rarr; {array}</span>
+            
+        </span>
+    </h4>
+    
+
     
     
     <div class="description">
@@ -772,99 +881,121 @@ const plex = new Plex({
     </div>
     
 
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
+
+
+
+
+
 <dl class="details">
+
     
-        
+
     
+
     
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
     
 
     
     
+
     
+
     
+
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
+        <p class="tag-source">
+            <a href="src.js.html" class="button">View Source</a>
+            <span>
+                <a href="src.js.html">src.js</a>, <a href="src.js.html#line241">line 241</a>
+            </span>
+        </p>
     
 </dl>
 
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    <h5>Returns:</h5>
-    
 
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Type</th>
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-    <tbody>
-    
-        <tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
             
-            <td class="type">
-            
-                        array
-                        
                     
-            </td>
-            <td class="description last">movies</td>
-        </tr>
-    
-    </tbody>
-</table>
 
+<div class="columns">
+    
+    <div class='param-desc column is-7'>movies</div>
     
     
-    
-</dd>
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<code class="param-type">array</code>
 
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="list">
-            
-            list<span class="signature">(prop)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{array}</span>
-        </h4>
+
+    </div>
     
-        
-        <div class="tag-source">
-            /Users/ryanfarber/code/sync/github/plex/src/src.js, line 204
+</div>
+
+                
         </div>
-        
     </div>
 
+
+
+
+</div>
+            
+                <div class="member">
+
+
     
-</dt>
-<dd>
+    <h4 class="name" id="list">
+        <a class="href-link" href="#list">#</a>
+        
+        <span class="code-name">
+            
+                list<span class="signature">(prop)</span><span class="type-signature"> &rarr; {array}</span>
+            
+        </span>
+    </h4>
+    
+
     
     
     <div class="description">
@@ -872,144 +1003,172 @@ const plex = new Plex({
     </div>
     
 
-    
-    
-    
-    
-    
-        
 
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
         <tr>
             
-                <td class="name"><code>prop</code></td>
+            <th>Name</th>
             
-            
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
 
+            <th>Type</th>
 
             
-            </td>
+
             
-            
-            
-            <td class="description last">
-                
-                property i.e. "director" "writer" "genre" etc</td>
+
+            <th class="last">Description</th>
         </tr>
-	
-	
-	</tbody>
-</table>
-    
-    
-    
-<dl class="details">
-    
+        </thead>
+
+        <tbody>
         
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>prop</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">string</code>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">property i.e. "director" "writer" "genre" etc</td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
     
+
     
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
     
 
     
     
+
     
+
     
+
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
+        <p class="tag-source">
+            <a href="src.js.html" class="button">View Source</a>
+            <span>
+                <a href="src.js.html">src.js</a>, <a href="src.js.html#line204">line 204</a>
+            </span>
+        </p>
     
 </dl>
 
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    <h5>Returns:</h5>
-    
 
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Type</th>
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-    <tbody>
-    
-        <tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
             
-            <td class="type">
-            
-                        array
-                        
                     
-            </td>
-            <td class="description last">writers</td>
-        </tr>
-    
-    </tbody>
-</table>
 
+<div class="columns">
+    
+    <div class='param-desc column is-7'>writers</div>
     
     
-    
-</dd>
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<code class="param-type">array</code>
 
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="listActors">
-            
-            listActors<span class="signature">()</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{array}</span>
-        </h4>
+
+    </div>
     
-        
-        <div class="tag-source">
-            /Users/ryanfarber/code/sync/github/plex/src/src.js, line 181
+</div>
+
+                
         </div>
-        
     </div>
 
+
+
+
+</div>
+            
+                <div class="member">
+
+
     
-</dt>
-<dd>
+    <h4 class="name" id="listActors">
+        <a class="href-link" href="#listActors">#</a>
+        
+        <span class="code-name">
+            
+                listActors<span class="signature">()</span><span class="type-signature"> &rarr; {array}</span>
+            
+        </span>
+    </h4>
+    
+
     
     
     <div class="description">
@@ -1017,99 +1176,121 @@ const plex = new Plex({
     </div>
     
 
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
+
+
+
+
+
 <dl class="details">
+
     
-        
+
     
+
     
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
     
 
     
     
+
     
+
     
+
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
+        <p class="tag-source">
+            <a href="src.js.html" class="button">View Source</a>
+            <span>
+                <a href="src.js.html">src.js</a>, <a href="src.js.html#line181">line 181</a>
+            </span>
+        </p>
     
 </dl>
 
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    <h5>Returns:</h5>
-    
 
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Type</th>
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-    <tbody>
-    
-        <tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
             
-            <td class="type">
-            
-                        array
-                        
                     
-            </td>
-            <td class="description last">actors</td>
-        </tr>
-    
-    </tbody>
-</table>
 
+<div class="columns">
+    
+    <div class='param-desc column is-7'>actors</div>
     
     
-    
-</dd>
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<code class="param-type">array</code>
 
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="listCountries">
-            
-            listCountries<span class="signature">()</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{array}</span>
-        </h4>
+
+    </div>
     
-        
-        <div class="tag-source">
-            /Users/ryanfarber/code/sync/github/plex/src/src.js, line 188
+</div>
+
+                
         </div>
-        
     </div>
 
+
+
+
+</div>
+            
+                <div class="member">
+
+
     
-</dt>
-<dd>
+    <h4 class="name" id="listCountries">
+        <a class="href-link" href="#listCountries">#</a>
+        
+        <span class="code-name">
+            
+                listCountries<span class="signature">()</span><span class="type-signature"> &rarr; {array}</span>
+            
+        </span>
+    </h4>
+    
+
     
     
     <div class="description">
@@ -1117,99 +1298,121 @@ const plex = new Plex({
     </div>
     
 
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
+
+
+
+
+
 <dl class="details">
+
     
-        
+
     
+
     
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
     
 
     
     
+
     
+
     
+
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
+        <p class="tag-source">
+            <a href="src.js.html" class="button">View Source</a>
+            <span>
+                <a href="src.js.html">src.js</a>, <a href="src.js.html#line188">line 188</a>
+            </span>
+        </p>
     
 </dl>
 
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    <h5>Returns:</h5>
-    
 
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Type</th>
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-    <tbody>
-    
-        <tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
             
-            <td class="type">
-            
-                        array
-                        
                     
-            </td>
-            <td class="description last">countries</td>
-        </tr>
-    
-    </tbody>
-</table>
 
+<div class="columns">
+    
+    <div class='param-desc column is-7'>countries</div>
     
     
-    
-</dd>
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<code class="param-type">array</code>
 
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="listDirectors">
-            
-            listDirectors<span class="signature">()</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{array}</span>
-        </h4>
+
+    </div>
     
-        
-        <div class="tag-source">
-            /Users/ryanfarber/code/sync/github/plex/src/src.js, line 167
+</div>
+
+                
         </div>
-        
     </div>
 
+
+
+
+</div>
+            
+                <div class="member">
+
+
     
-</dt>
-<dd>
+    <h4 class="name" id="listDirectors">
+        <a class="href-link" href="#listDirectors">#</a>
+        
+        <span class="code-name">
+            
+                listDirectors<span class="signature">()</span><span class="type-signature"> &rarr; {array}</span>
+            
+        </span>
+    </h4>
+    
+
     
     
     <div class="description">
@@ -1217,99 +1420,121 @@ const plex = new Plex({
     </div>
     
 
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
+
+
+
+
+
 <dl class="details">
+
     
-        
+
     
+
     
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
     
 
     
     
+
     
+
     
+
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
+        <p class="tag-source">
+            <a href="src.js.html" class="button">View Source</a>
+            <span>
+                <a href="src.js.html">src.js</a>, <a href="src.js.html#line167">line 167</a>
+            </span>
+        </p>
     
 </dl>
 
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    <h5>Returns:</h5>
-    
 
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Type</th>
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-    <tbody>
-    
-        <tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
             
-            <td class="type">
-            
-                        array
-                        
                     
-            </td>
-            <td class="description last">directors</td>
-        </tr>
-    
-    </tbody>
-</table>
 
+<div class="columns">
+    
+    <div class='param-desc column is-7'>directors</div>
     
     
-    
-</dd>
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<code class="param-type">array</code>
 
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="listGenres">
-            
-            listGenres<span class="signature">()</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{array}</span>
-        </h4>
+
+    </div>
     
-        
-        <div class="tag-source">
-            /Users/ryanfarber/code/sync/github/plex/src/src.js, line 195
+</div>
+
+                
         </div>
-        
     </div>
 
+
+
+
+</div>
+            
+                <div class="member">
+
+
     
-</dt>
-<dd>
+    <h4 class="name" id="listGenres">
+        <a class="href-link" href="#listGenres">#</a>
+        
+        <span class="code-name">
+            
+                listGenres<span class="signature">()</span><span class="type-signature"> &rarr; {array}</span>
+            
+        </span>
+    </h4>
+    
+
     
     
     <div class="description">
@@ -1317,99 +1542,121 @@ const plex = new Plex({
     </div>
     
 
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
+
+
+
+
+
 <dl class="details">
+
     
-        
+
     
+
     
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
     
 
     
     
+
     
+
     
+
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
+        <p class="tag-source">
+            <a href="src.js.html" class="button">View Source</a>
+            <span>
+                <a href="src.js.html">src.js</a>, <a href="src.js.html#line195">line 195</a>
+            </span>
+        </p>
     
 </dl>
 
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    <h5>Returns:</h5>
-    
 
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Type</th>
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-    <tbody>
-    
-        <tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
             
-            <td class="type">
-            
-                        array
-                        
                     
-            </td>
-            <td class="description last">genres</td>
-        </tr>
-    
-    </tbody>
-</table>
 
+<div class="columns">
+    
+    <div class='param-desc column is-7'>genres</div>
     
     
-    
-</dd>
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<code class="param-type">array</code>
 
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="listWriters">
-            
-            listWriters<span class="signature">()</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{array}</span>
-        </h4>
+
+    </div>
     
-        
-        <div class="tag-source">
-            /Users/ryanfarber/code/sync/github/plex/src/src.js, line 174
+</div>
+
+                
         </div>
-        
     </div>
 
+
+
+
+</div>
+            
+                <div class="member">
+
+
     
-</dt>
-<dd>
+    <h4 class="name" id="listWriters">
+        <a class="href-link" href="#listWriters">#</a>
+        
+        <span class="code-name">
+            
+                listWriters<span class="signature">()</span><span class="type-signature"> &rarr; {array}</span>
+            
+        </span>
+    </h4>
+    
+
     
     
     <div class="description">
@@ -1417,99 +1664,121 @@ const plex = new Plex({
     </div>
     
 
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
+
+
+
+
+
 <dl class="details">
+
     
-        
+
     
+
     
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
     
 
     
     
+
     
+
     
+
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
+        <p class="tag-source">
+            <a href="src.js.html" class="button">View Source</a>
+            <span>
+                <a href="src.js.html">src.js</a>, <a href="src.js.html#line174">line 174</a>
+            </span>
+        </p>
     
 </dl>
 
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    <h5>Returns:</h5>
-    
 
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Type</th>
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-    <tbody>
-    
-        <tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
             
-            <td class="type">
-            
-                        array
-                        
                     
-            </td>
-            <td class="description last">writers</td>
-        </tr>
-    
-    </tbody>
-</table>
 
+<div class="columns">
+    
+    <div class='param-desc column is-7'>writers</div>
     
     
-    
-</dd>
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
+        
+<code class="param-type">array</code>
 
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="searchActors">
-            
-            searchActors<span class="signature">(query)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{array}</span>
-        </h4>
+
+    </div>
     
-        
-        <div class="tag-source">
-            /Users/ryanfarber/code/sync/github/plex/src/src.js, line 137
+</div>
+
+                
         </div>
-        
     </div>
 
+
+
+
+</div>
+            
+                <div class="member">
+
+
     
-</dt>
-<dd>
+    <h4 class="name" id="searchActors">
+        <a class="href-link" href="#searchActors">#</a>
+        
+        <span class="code-name">
+            
+                searchActors<span class="signature">(query)</span><span class="type-signature"> &rarr; {array}</span>
+            
+        </span>
+    </h4>
+    
+
     
     
     <div class="description">
@@ -1517,152 +1786,179 @@ const plex = new Plex({
     </div>
     
 
-    
-    
-    
-    
-    
-        
 
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
         <tr>
             
-                <td class="name"><code>query</code></td>
+            <th>Name</th>
             
-            
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
 
+            <th>Type</th>
 
             
-            </td>
+
             
-            
-            
-            <td class="description last">
-                
-                your search query</td>
+
+            <th class="last">Description</th>
         </tr>
-	
-	
-	</tbody>
-</table>
-    
-    
-    
-<dl class="details">
-    
+        </thead>
+
+        <tbody>
         
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>query</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">string</code>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">your search query</td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
     
+
     
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
     
 
     
     
+
     
+
     
+
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
+        <p class="tag-source">
+            <a href="src.js.html" class="button">View Source</a>
+            <span>
+                <a href="src.js.html">src.js</a>, <a href="src.js.html#line137">line 137</a>
+            </span>
+        </p>
     
 </dl>
 
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    <h5>Returns:</h5>
-    
 
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Type</th>
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-    <tbody>
-    
-        <tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
             
-            <td class="type">
-            
-                        array
-                        
                     
-            </td>
-            <td class="description last">movies with queried actor</td>
-        </tr>
-    
-    </tbody>
-</table>
 
+<div class="columns">
+    
+    <div class='param-desc column is-7'>movies with queried actor</div>
     
     
-    
-        <h5>Example</h5>
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
         
+<code class="param-type">array</code>
 
-    
-    <pre class="prettyprint"><code>plex.searchActors("denzel washington").then(console.log)</code></pre>
-    
 
+    </div>
     
-</dd>
+</div>
 
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="searchDirectors">
-            
-            searchDirectors<span class="signature">(query)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{array}</span>
-        </h4>
-    
-        
-        <div class="tag-source">
-            /Users/ryanfarber/code/sync/github/plex/src/src.js, line 76
+                
         </div>
-        
     </div>
 
+
+
+
+    <h5>Example</h5>
     
-</dt>
-<dd>
+    
+        <pre class="prettyprint"><code>plex.searchActors("denzel washington").then(console.log)</code></pre>
+    
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="searchDirectors">
+        <a class="href-link" href="#searchDirectors">#</a>
+        
+        <span class="code-name">
+            
+                searchDirectors<span class="signature">(query)</span><span class="type-signature"> &rarr; {array}</span>
+            
+        </span>
+    </h4>
+    
+
     
     
     <div class="description">
@@ -1670,152 +1966,179 @@ const plex = new Plex({
     </div>
     
 
-    
-    
-    
-    
-    
-        
 
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
         <tr>
             
-                <td class="name"><code>query</code></td>
+            <th>Name</th>
             
-            
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
 
+            <th>Type</th>
 
             
-            </td>
+
             
-            
-            
-            <td class="description last">
-                
-                your search query</td>
+
+            <th class="last">Description</th>
         </tr>
-	
-	
-	</tbody>
-</table>
-    
-    
-    
-<dl class="details">
-    
+        </thead>
+
+        <tbody>
         
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>query</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">string</code>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">your search query</td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
     
+
     
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
     
 
     
     
+
     
+
     
+
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
+        <p class="tag-source">
+            <a href="src.js.html" class="button">View Source</a>
+            <span>
+                <a href="src.js.html">src.js</a>, <a href="src.js.html#line76">line 76</a>
+            </span>
+        </p>
     
 </dl>
 
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    <h5>Returns:</h5>
-    
 
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Type</th>
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-    <tbody>
-    
-        <tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
             
-            <td class="type">
-            
-                        array
-                        
                     
-            </td>
-            <td class="description last">movies with queried director</td>
-        </tr>
-    
-    </tbody>
-</table>
 
+<div class="columns">
+    
+    <div class='param-desc column is-7'>movies with queried director</div>
     
     
-    
-        <h5>Example</h5>
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
         
+<code class="param-type">array</code>
 
-    
-    <pre class="prettyprint"><code>plex.searchDirectors("stanley kubrick").then(console.log)</code></pre>
-    
 
+    </div>
     
-</dd>
+</div>
 
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="searchMovies">
-            
-            searchMovies<span class="signature">(query)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{array}</span>
-        </h4>
-    
-        
-        <div class="tag-source">
-            /Users/ryanfarber/code/sync/github/plex/src/src.js, line 48
+                
         </div>
-        
     </div>
 
+
+
+
+    <h5>Example</h5>
     
-</dt>
-<dd>
+    
+        <pre class="prettyprint"><code>plex.searchDirectors("stanley kubrick").then(console.log)</code></pre>
+    
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="searchMovies">
+        <a class="href-link" href="#searchMovies">#</a>
+        
+        <span class="code-name">
+            
+                searchMovies<span class="signature">(query)</span><span class="type-signature"> &rarr; {array}</span>
+            
+        </span>
+    </h4>
+    
+
     
     
     <div class="description">
@@ -1823,152 +2146,179 @@ const plex = new Plex({
     </div>
     
 
-    
-    
-    
-    
-    
-        
 
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
         <tr>
             
-                <td class="name"><code>query</code></td>
+            <th>Name</th>
             
-            
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
 
+            <th>Type</th>
 
             
-            </td>
+
             
-            
-            
-            <td class="description last">
-                
-                your search query</td>
+
+            <th class="last">Description</th>
         </tr>
-	
-	
-	</tbody>
-</table>
-    
-    
-    
-<dl class="details">
-    
+        </thead>
+
+        <tbody>
         
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>query</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">string</code>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">your search query</td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
     
+
     
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
     
 
     
     
+
     
+
     
+
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
+        <p class="tag-source">
+            <a href="src.js.html" class="button">View Source</a>
+            <span>
+                <a href="src.js.html">src.js</a>, <a href="src.js.html#line48">line 48</a>
+            </span>
+        </p>
     
 </dl>
 
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    <h5>Returns:</h5>
-    
 
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Type</th>
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-    <tbody>
-    
-        <tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
             
-            <td class="type">
-            
-                        array
-                        
                     
-            </td>
-            <td class="description last">array of movies</td>
-        </tr>
-    
-    </tbody>
-</table>
 
+<div class="columns">
+    
+    <div class='param-desc column is-7'>array of movies</div>
     
     
-    
-        <h5>Example</h5>
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
         
+<code class="param-type">array</code>
 
-    
-    <pre class="prettyprint"><code>plex.searchMovies("adaptation").then(console.log)</code></pre>
-    
 
+    </div>
     
-</dd>
+</div>
 
-        
-            
-<dt>
-    <div class="nameContainer">
-        <h4 class="name" id="searchWriters">
-            
-            searchWriters<span class="signature">(query)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{array}</span>
-        </h4>
-    
-        
-        <div class="tag-source">
-            /Users/ryanfarber/code/sync/github/plex/src/src.js, line 105
+                
         </div>
-        
     </div>
 
+
+
+
+    <h5>Example</h5>
     
-</dt>
-<dd>
+    
+        <pre class="prettyprint"><code>plex.searchMovies("adaptation").then(console.log)</code></pre>
+    
+
+
+</div>
+            
+                <div class="member">
+
+
+    
+    <h4 class="name" id="searchWriters">
+        <a class="href-link" href="#searchWriters">#</a>
+        
+        <span class="code-name">
+            
+                searchWriters<span class="signature">(query)</span><span class="type-signature"> &rarr; {array}</span>
+            
+        </span>
+    </h4>
+    
+
     
     
     <div class="description">
@@ -1976,157 +2326,190 @@ const plex = new Plex({
     </div>
     
 
-    
-    
-    
-    
-    
-        
 
-<table class="params">
-    <thead>
-	<tr>
-		
-		<th>Name</th>
-		
-		
-		<th>Type</th>
-		
-		
-		
-		<th class="last">Description</th>
-	</tr>
-	</thead>
-	
-	<tbody>
-	
-	
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+<div class="table-container">
+    <table class="params table">
+        <thead>
         <tr>
             
-                <td class="name"><code>query</code></td>
+            <th>Name</th>
             
-            
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
 
+            <th>Type</th>
 
             
-            </td>
+
             
-            
-            
-            <td class="description last">
-                
-                your search query</td>
+
+            <th class="last">Description</th>
         </tr>
-	
-	
-	</tbody>
-</table>
-    
-    
-    
-<dl class="details">
-    
+        </thead>
+
+        <tbody>
         
+
+            
+<tr class="deep-level-0">
+  
+      <td class="name"><code>query</code></td>
+  
+
+  <td class="type">
+  
+      
+<code class="param-type">string</code>
+
+
+  
+  </td>
+
+  
+
+  
+
+  <td class="description last">your search query</td>
+</tr>
+
+
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+<dl class="details">
+
     
+
     
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
     
 
     
     
+
     
+
     
+
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
+        <p class="tag-source">
+            <a href="src.js.html" class="button">View Source</a>
+            <span>
+                <a href="src.js.html">src.js</a>, <a href="src.js.html#line105">line 105</a>
+            </span>
+        </p>
     
 </dl>
 
-    
-    
-
-    
-
-    
-    
-    
-    
-    
-    <h5>Returns:</h5>
-    
 
 
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Type</th>
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-    <tbody>
-    
-        <tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class='columns method-parameter'>
+        <div class="column is-2"><label>Returns:</label></div>
+        <div class="column is-10">
             
-            <td class="type">
-            
-                        array
-                        
                     
-            </td>
-            <td class="description last">movies with queried writer</td>
-        </tr>
-    
-    </tbody>
-</table>
 
+<div class="columns">
+    
+    <div class='param-desc column is-7'>movies with queried writer</div>
     
     
-    
-        <h5>Example</h5>
+    <div class='column is-5 has-text-left'>
+        <label>Type: </label>
         
+<code class="param-type">array</code>
 
+
+    </div>
     
-    <pre class="prettyprint"><code>plex.searchWriters("charlie kauffman").then(console.log)</code></pre>
+</div>
+
+                
+        </div>
+    </div>
+
+
+
+
+    <h5>Example</h5>
+    
+    
+        <pre class="prettyprint"><code>plex.searchWriters("charlie kauffman").then(console.log)</code></pre>
     
 
-    
-</dd>
 
-        </dl>
+</div>
+            
+            </div>
+        </div>
     
-    
-    
-    
+
     
 
     
 </article>
 
-</section>  
+</section>
 
 
 
 
-
-        
-
-        <footer>
-            Documentation generated by <a target="_blank" href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.11</a> on Tue Oct 04 2022 23:36:39 GMT-0700 (Pacific Daylight Time)
-        </footer>
+            </div>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
     </div>
-</div>
-<script>prettyPrint();</script>
-<script src="scripts/jaguar.js"></script>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+<script src="scripts/search.js"> </script>
+
+
 </body>
 </html>
