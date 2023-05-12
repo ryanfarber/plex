@@ -8,6 +8,7 @@ const convertXML = require('xml-js')
 const MiniSearch = require('minisearch')
 const fs = require("fs")
 const fsp = require("fs").promises
+const {Item, Library} = require("./schemas.js")
 
 const {humanizeTime} = require("./helpers.js")
 let _ = require("underscore")
@@ -37,7 +38,27 @@ function Plex(config = {}) {
 
 	if (!token) throw new Error("please input your plex token")
 	let plexUrl = `http://${host}:32400/library/all?X-Plex-Token=${token}`
-	
+	let plexHost = `http://${host}:32400/`
+	axios.defaults.baseURL = `http://${host}:32400`
+	axios.defaults.params = {}
+	axios.defaults.params["X-Plex-Token"] = token
+
+
+
+	this.listLibraries = async function() {
+		let res = await axios.get("/library/sections")
+		let data = res?.data?.MediaContainer?.Directory
+		data = data.map(x => new Library(x))
+		return data
+	}
+
+	this.test = async function() {
+		let res = await axios.get("/library/sections/8/all")
+		// console.log(res)
+		let data = res?.data?.MediaContainer?.Metadata
+		// data = data.map(x => new Library(x))
+		return data[0].Media[0]
+	}
 	
 	/** search all movies
 	 * @arg {string} query - your search query
@@ -196,6 +217,14 @@ function Plex(config = {}) {
 		return await this.list("genre")
 	}
 
+	this.listStudios = async function() {
+		let movies = await this.getLibrary()
+
+		let studiosMap = new Set(movies.map(x => x.studio))
+		let studios = Array.from(studiosMap).filter(x => x).sort()
+		return studios
+	}
+
 
 	/** list movies with a given property
 	 * @arg {string} prop - property i.e. "director" "writer" "genre" etc
@@ -240,21 +269,22 @@ function Plex(config = {}) {
 	 */
 	this.getMovies = async function(simple) {
 		let library = await this.getLibrary()
-		library = library.filter(item => {
-			let section = item.librarySectionTitle.toLowerCase()
-			let type = item.type
-			if (section == "all" && type == "movie" ) return true
-		})
+		// console.log(library)
+		library = library.filter(item => item.type == "movie")
 
-		if (simple) library = library.map(x => {
-			let keys = ["title", "year", "studio", "summary", "rating", "duration", "director", "writer", "role", "genre", "country", "contentRating" ]
+		if (simple) {
+			library = library.map(x => new Item(x, plexHost, token))
+		}
 
-			let obj = {}
-			keys.forEach(key => {
-				obj[key] = x[key]
-			})
-			return obj
-		})
+		// if (simple) library = library.map(x => {
+		// 	let keys = ["title", "year", "studio", "summary", "rating", "duration", "director", "writer", "role", "genre", "country", "contentRating" ]
+
+		// 	let obj = {}
+		// 	keys.forEach(key => {
+		// 		obj[key] = x[key]
+		// 	})
+		// 	return obj
+		// })
 		return library
 	}
 

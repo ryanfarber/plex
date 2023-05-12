@@ -38,14 +38,14 @@ let folderList = [
 	"/Volumes/movies_A/MOVIES/Disney/",
 	"/Volumes/movies_A/MOVIES/Short Films/"
 ]
-// scrapeFolder(folder)
+scrapeFolder(folderList[4]).then(console.log)
 // analyzeFolder(folder)
 // saveTagData(folder)
 
 // batchProcessTags(folderList)
 // 
 
-searchTags("girl", true)
+// searchTags("girl", true)
 
 async function searchTags(query, simple) {
 	console.log("searching...\n")
