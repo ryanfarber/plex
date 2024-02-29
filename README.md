@@ -7,7 +7,8 @@ Please read the [documentation](https://ryanfarber.github.io/plex)!
 const Plex = require("@ryanforever/plex")
 const plex = new Plex({
 	host: "192.168.1.128",
-	token: process.env.PLEX_TOKEN
+	token: process.env.PLEX_TOKEN,
+	debug: false
 })
 
 plex.getMovies().then(console.log)

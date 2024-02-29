@@ -20,3 +20,5 @@ let plex = new Plex({
 // plex.getLibrary().then(console.log)
 // plex.listLibraries().then(console.log)
 // plex.test().then(console.log)
+
+plex.getMovies().then(console.log)

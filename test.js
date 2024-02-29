@@ -18,9 +18,9 @@ let plex = new Plex({
 
 
 
-plex.getMovies(false).then(res => {
-	console.log(res)
-})
+// plex.getMovies(false).then(res => {
+// 	console.log(res)
+// })
 
 // plex.getLibrary().then(lib => {
 // 	console.log(lib)

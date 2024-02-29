@@ -1,18 +1,46 @@
 
 require("dotenv").config()
 const Logger = require("@ryanforever/logger").v2
-const logger = new Logger("plex", {debug: true})
-const axios = require("axios")
+
+const Axios = require("axios")
 const fetch = require("node-fetch")
 const convertXML = require('xml-js')
 const MiniSearch = require('minisearch')
 const fs = require("fs")
 const fsp = require("fs").promises
-const {Item, Library} = require("./schemas.js")
+const {Item, Library, Collection} = require("./schemas")
+const qs = require("querystring")
 
 const {humanizeTime} = require("./helpers.js")
 let _ = require("underscore")
 const getDecade = require('get-decade')
+
+
+let m = {
+	success: "success ✅"
+}
+
+class Err extends Error {
+	name = "PLEX ERROR"
+
+	static errors = {
+		MISSING_LIBRARY_ID: "missing library id. i.e '4'",
+		MISSING_COLLECTION_ID: "missing collection id. i.e '65257'"
+	}
+
+	constructor(error) {
+		super(error)
+
+		if (Err.errors.hasOwnProperty(error)) this.message = Err.errors[error]
+		this.apiError = error?.response?.data
+
+	}
+}
+
+
+
+
+
 
 /**
  * Plex
@@ -30,6 +58,7 @@ const getDecade = require('get-decade')
  */
 function Plex(config = {}) {
 
+	const logger = new Logger("plex", {debug: config.debug ?? false})
 	let token = config.token
 	let host = config.host
 	let useCachedLibrary = config.useCachedLibrary || false
@@ -39,18 +68,381 @@ function Plex(config = {}) {
 	if (!token) throw new Error("please input your plex token")
 	let plexUrl = `http://${host}:32400/library/all?X-Plex-Token=${token}`
 	let plexHost = `http://${host}:32400/`
-	axios.defaults.baseURL = `http://${host}:32400`
+
+	const axios = Axios.create({
+		baseURL: `http://${host}:32400`
+	})
+
 	axios.defaults.params = {}
 	axios.defaults.params["X-Plex-Token"] = token
 
+	const axios2 = Axios.create({
+		baseURL: `http://${host}:32400`
+	})
+
+	axios2.defaults.params = {}
+	axios2.defaults.params["X-Plex-Token"] = token
+
+	Item.plexHost = plexHost
+	Item.token = token
 
 
-	this.listLibraries = async function() {
+
+	////////////////////////////////////////////////////////////
+	// API
+	////////////////////////////////////////////////////////////
+
+
+	this.request = async function(url, options = {}) {
+		let res = await axios2({
+			url,
+			...options
+		}).catch(err => {
+			let message = err.response?.data || err.response
+			logger.error(message)
+			throw new Error(err)
+		})
+		return res.data
+	}
+
+
+
+
+
+
+
+	////////////////////////////////////////////////////////////
+	// GET
+	////////////////////////////////////////////////////////////
+
+	/** find library by name or id */
+	this.findLibrary = async function(input) {
+		logger.debug(`findLibrary`)
+
+		if (!input) throw new Err(`please input a library ID or name`)
+
+		let libraries = await this.getLibraries()
+		return libraries.find(x => x.name == input || x.id == input)
+	}
+
+	/** get all libraries */
+	this.getLibraries = async function(raw) {
+		logger.debug(`getLibaries`)
+
 		let res = await axios.get("/library/sections")
 		let data = res?.data?.MediaContainer?.Directory
-		data = data.map(x => new Library(x))
-		return data
+		let mapped = data.map(x => new Library(x))
+		if (raw) return data
+		else return mapped
 	}
+
+	/** get collections from a single library, by libraryId */
+	this.getLibraryCollections = async function(libraryId, returnRaw) {
+		logger.debug(`getLibraryCollections`)
+
+		if (!libraryId) throw new Err(`MISSING_LIBRARY_ID`)
+		let library = await this.findLibrary(libraryId)
+		let res = await axios.get(`/library/sections/${libraryId}/collections`)
+		let raw = res?.data?.MediaContainer?.Metadata
+		if (!raw) return []
+		let mapped = raw.map(x => new Collection(x, library))
+		if (returnRaw) return raw
+		else return mapped
+	}
+
+
+	/** get all collections from all libraryies */
+	this.getCollections = async function(returnRaw) {
+		logger.debug(`getCollections`)
+
+		let libraries = await this.getLibraries()
+		let collector = []
+
+		for (let library of libraries) {
+			logger.debug(`getting "${library.name}" collections...`)
+			let collections = await this.getLibraryCollections(library.id, returnRaw)
+			logger.debug(`${collections.length} collections in "${library.name}"`)
+			collector.push(...collections)
+		}
+		return collector
+	}
+
+	/** get a collection by it's id */
+	this.getCollectionById = async function(id) {
+		logger.debug(`getCollectionById`)
+		if (!id) throw new Err(`MISSING_COLLECTION_ID`)
+		
+
+		let res = await axios.get(`/library/collections/${id}`)
+		let raw = res.data?.MediaContainer.Metadata[0]
+		let collection = new Collection(raw)
+		return collection
+	}
+
+	this.getCollectionLibraryId = async function(collectionId) {
+		let collection = await this.getCollectionById(collectionId)
+		return collection.libraryId
+	}
+
+	/** find a collection by name or id */
+	this.findCollection = async function(input) {
+		logger.debug(`findCollection`)
+
+		let collections = await this.getCollections()
+		return collections.find(x => x.id == input || x.name == input)
+	}
+
+	/** search collections with given input.  if an id is given, will return that collection */
+	this.searchCollections = async function(input) {
+		logger.debug(`searchCollections`)
+		input = input.toLowerCase().trim()
+		let collections = await this.getCollections()
+		return collections.filter(x => {
+			let name = x.name.toLowerCase().trim()
+			let id = x.id
+			return name.includes(input) || id == input
+		})
+	}
+
+
+	/** wrapper around plex's search function */
+	this.search = async function(input, params = {}) {
+		logger.debug(`search`)
+		if (!input) throw new Err(`missing search input`)
+
+		let returnRaw = params.returnRaw
+		let res = await axios("/hubs/search", {
+			params: {
+				query: input,
+				limit: 100
+			}
+		})
+		let raw = res.data.MediaContainer.Hub
+
+		if (returnRaw) return raw
+		let output = {
+			collections: [],
+			movies: [],
+			shows: []
+		}
+
+		let foundCollections = raw.find(x => x.title == "Collections")
+		let foundMovies = raw.find(x => x.title == "Movies")
+		let foundShows = raw.find(x => x.title == "Shows")
+			
+		// found collections
+		if (foundCollections && foundCollections.Directory) {
+			let mapped = foundCollections.Directory.map(x => {
+				return new Collection({
+					name: x.tag,
+					id: x.id,
+					libraryId: x.librarySectionID,
+					libraryName: x.librarySectionTitle,
+					guid: x.guid,
+					score: x.score,
+					raw: x
+				})
+			})
+
+			output.collections.push(...mapped)
+		}
+
+		// found movies
+		if (foundMovies && foundMovies.Metadata) {
+			let mapped = foundMovies.Metadata.map(x => new Item(x))
+			output.movies.push(...mapped)
+		}
+
+		// found shows
+		if (foundShows && foundShows.Metadata) {
+			let mapped = foundShows.Metadata.map(x => new Item(x))
+			output.shows.push(...mapped)
+		}
+
+		return output
+	}
+
+	this.getCollectionVisibility = async function(collectionId, libraryId) {
+		if (!collectionId) throw new Err("MISSING_COLLECTION_ID")
+		logger.debug(`getCollectionVisibility`)
+
+		if (!libraryId) libraryId = await this.getCollectionLibraryId(collectionId)
+
+
+		let res = await axios(`/hubs/sections/${libraryId}/manage`, {
+			method: "GET",
+			params: {
+				metadataItemId: collectionId
+			}
+		})
+		let raw = res.data?.MediaContainer?.Hub[0]
+		return {
+			promotedToRecommended: (raw.promotedToRecommended) ? 1 : 0,
+			promotedToOwnHome: (raw.promotedToOwnHome) ? 1 : 0,
+			promotedToSharedHome: (raw.promotedToSharedHome) ? 1 : 0
+		}
+	}
+
+
+
+
+	////////////////////////////////////////////////////////////
+	// POST
+	////////////////////////////////////////////////////////////
+
+
+	/** update collection */
+	this.updateCollection = async function(collectionId, data = {}) {
+		logger.debug(`updateCollection`)
+
+		if (!collectionId) throw new Err("MISSING_COLLECTION_ID")
+
+		let collectionProps = new Map([
+			["name", "title.value"],
+			["sortName", "titleSort.value"],
+			["summary", "summary.value"]
+		])
+
+		let inputKeys = Object.keys(data)
+		let collectionKeys = Array.from(collectionProps.keys())
+		
+		
+
+		let collection = await this.getCollectionById(collectionId)
+		let libraryId = collection.libraryId
+		let params = {
+			type: 18,
+			id: collectionId,
+			"title.value": data.title || data.name,
+			"titleSort.value": data.sortTitle || data.sortName,
+			"summary.value": data.summary
+		}
+		let promises = []
+
+		if (data.hasOwnProperty("visibility") && !_.isEmpty(data.visibility)) {
+			let p = this.setCollectionVisibility(collectionId, data.visibility)
+			promises.push(p)
+		}
+
+		if (inputKeys.some(key => collectionProps.has(key))) {
+			logger.debug(`input has collection props`)
+
+			let params = {
+				type: 18,
+				id: collectionId
+			}
+
+
+			for (let key of collectionKeys) {
+				if (!data.hasOwnProperty(key)) continue
+				let plexKey = collectionProps.get(key)
+				params[plexKey] = data[key]
+			}
+
+			logger.debug(params)
+
+			let p = axios(`/library/sections/${libraryId}/all`, {
+				method: "PUT",
+				params
+			})
+
+			promises.push(p)
+		}
+
+
+		let res = await Promise.all(promises).catch(err => {
+			throw new Err(err)
+		})
+
+		logger.log(`success ✅`)
+		return res
+
+
+	}
+
+	/** set visibility of collection by id */
+	this.setCollectionVisibility = async function(collectionId, options = {}) {
+		logger.debug(`setCollectionVisibility`)
+
+		if (!collectionId) throw new Err("MISSING_COLLECTION_ID")
+
+		if (_.isEmpty(options)) throw new Err(`no visibility options provided`)
+
+		let collection = await this.getCollectionById(collectionId)
+		let libraryId = collection.libraryId
+
+		// have to get current states of visibility, or else it will revert to true for some stupid reason
+		let currentVisibility = await this.getCollectionVisibility(collectionId, libraryId)
+
+		let keys = new Map([
+			["library", "promotedToRecommended"],
+			["recommended", "promotedToRecommended"],
+			["promotedToRecommended", "promotedToRecommended"],
+			["visibleOnLibrary", "promotedToRecommended"],
+
+			["home", "promotedToOwnHome"],
+			["promotedToOwnHome", "promotedToOwnHome"],
+			["visibleOnHome", "promotedToOwnHome"],
+
+			["friendsHome", "promotedToSharedHome"],
+			["friends", "promotedToSharedHome"],
+			["promotedToSharedHome", "promotedToSharedHome"],
+			["visibleOnFriendsHome", "promotedToSharedHome"]
+		])
+
+		let params = {
+			metadataItemId: collectionId,
+			...currentVisibility
+		}
+
+		
+
+		for (let [key, val] of Object.entries(options)) {
+			if (!keys.has(key)) continue
+			let plexKey = keys.get(key)
+			let plexVal
+
+			if (val == true) plexVal = 1
+			else if (val == false) plexVal = 0
+
+			params[plexKey] = plexVal
+		}
+
+		logger.debug(params)
+		// return
+
+		let res = await axios(`/hubs/sections/${libraryId}/manage`, {
+			method: "POST",
+			params
+		}).catch(err => {
+			throw new Err(err)
+		})
+
+		logger.log(m.success)
+		// return res
+
+
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	this.test = async function() {
 		let res = await axios.get("/library/sections/8/all")

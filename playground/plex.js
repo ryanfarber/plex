@@ -25,6 +25,9 @@ let plex = new Plex({
 })
 
 
+plex.createCollection()
+
+
 // plex.getMovies().then(res => {
 // 	res.forEach(console.log)
 // })
@@ -54,7 +57,7 @@ let plex = new Plex({
 // initItems()
 // cacheDatabase()
 
-syncItems()
+// syncItems()
 // syncRatings()
 
 
