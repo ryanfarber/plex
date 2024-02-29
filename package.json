@@ -1,12 +1,12 @@
 {
   "name": "@ryanforever/plex",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "plex API",
   "main": "index.js",
   "scripts": {
     "test": "node test.js",
     "docs": "jsdoc --configure jsdoc-3.json --verbose",
-    "build": "npm i && npm version patch --no-git-tag-version && npm i && git add --all && git commit -m 'auto-build via npm' && git push origin --all"
+    "build": "npm i && npm run docs && npm version patch --no-git-tag-version && npm i && git add --all && git commit -m 'auto-build via npm' && git push origin --all"
   },
   "repository": {
     "type": "git",
